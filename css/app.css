@@ -69,16 +69,35 @@ h1 {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
-}
-
-.deck .card.show {
     font-size: 33px;
 }
+
+@keyframes match { 
+    0%, 100% {transform: scale(1,1);}
+    50% {transform: scale(1.1,1.1);}
+} 
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    animation-name: match;
+    animation-duration: 0.3s;
+}
+
+@keyframes no-match { 
+    0%, 50%, 100% {transform: translateX(0);}
+    25% {transform: translateX(-5px);}
+    75% {transform: translateX(5px);}
+} 
+
+.deck .card.wrong {
+    transform: rotateY(0);
+    background: #e40235;
+    cursor: default;
+    font-size: 33px;
+    animation-name: no-match;
+    animation-duration: 0.3s;
 }
 
 /*
@@ -89,6 +108,13 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+}
+
+.score-panel .timer {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    display: inline-block;
 }
 
 .score-panel .stars {
@@ -106,4 +132,37 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*
+ * Styles for the Victory Modal
+ */
+
+.modal {
+    position: absolute;
+    top: -99999999px;
+    left: -999999999x;
+    text-align: center;
+}
+
+.modal.show {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+}
+
+.modal .you-won {
+    font-weight: 800;
+    font-size: 3rem;
+}
+
+.modal .score-panel {
+    margin: 20% auto;
+    text-align: center;
+}
+
+.modal .score-panel .restart {
+    float: none;
 }
