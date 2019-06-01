@@ -146,6 +146,7 @@ h1 {
 }
 
 .modal.show {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -161,6 +162,7 @@ h1 {
 .modal .score-panel {
     margin: 20% auto;
     text-align: center;
+    font-size: 2rem;
 }
 
 .modal .score-panel .restart {

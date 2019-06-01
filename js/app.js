@@ -65,6 +65,10 @@ let timeCounter = 0;
 let timer;
 let modal = document.querySelector('.modal');
 let scorePanel = document.querySelector('.score-panel');
+let restartButton = document.querySelector('.restart');
+let moves = document.querySelector('.moves');
+let seconds = document.querySelector('.timer');
+let stars = document.querySelector('.stars');
 
 deck.addEventListener('click', handleClick);
 
@@ -81,7 +85,7 @@ function handleClick(clickedCard) {
 
 function incrementMoveCounter() {
     moveCounter += 1;
-    document.querySelector('.moves').innerHTML = moveCounter;
+    moves.innerHTML = moveCounter;
     starRating(moveCounter);
 }
 
@@ -126,9 +130,9 @@ function checkVictory() {
         setTimeout(function () {
             modal.innerHTML = '<section class="score-panel"> <h1 class="you-won">YOU WON!</h1>' + scorePanel.innerHTML + '</section>';
             modal.classList.add('show');
+            document.querySelector('.restart').addEventListener('click', restartGame);
         }, 300);
         clearInterval(timer);
-        document.querySelector('.restart').addEventListener('click', restartGame);
     }
 }
 
@@ -143,10 +147,9 @@ function setTimer(clickedCard) {
 
 function clock() {
     timeCounter += 1;
-    document.querySelector('.timer').innerHTML = timeCounter + ' seconds';
+    seconds.innerHTML = timeCounter + ' seconds';
 }
 
-let restartButton = document.querySelector('.restart');
 restartButton.addEventListener('click', restartGame);
 
 function restartGame() {
@@ -154,10 +157,12 @@ function restartGame() {
     matchedCards = 0;
     openedCards = [];
     moveCounter = 0;
-    document.querySelector('.moves').innerHTML = moveCounter;
+    moves.innerHTML = moveCounter;
     timeCounter = 0;
     clearInterval(timer);
-    document.querySelector('.timer').innerHTML = timeCounter;
-    document.querySelector('.stars').innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+    seconds.innerHTML = timeCounter+' seconds';
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+    deck.addEventListener('click', setTimer);
     modal.className = 'modal';
+    restartButton.addEventListener('click', restartGame);
 }
