@@ -1,15 +1,12 @@
 /*
- * Create a list that holds all of your cards
+ * Create a list that holds all of the cards
  */
 
 let cards = [...document.getElementsByClassName('card')];
 let deck = document.querySelector('.deck');
 
 /*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
+ * Display the cards on the page using shuffle
  */
 insertCards();
 
@@ -47,17 +44,6 @@ function shuffle(array) {
     return array;
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
 let openedCards = [];
 let matchedCards = 0;
 let moveCounter = 0;
@@ -72,6 +58,9 @@ let stars = document.querySelector('.stars');
 
 deck.addEventListener('click', handleClick);
 
+/*
+ * Open card when it's clicked
+ */
 function handleClick(clickedCard) {
     if (clickedCard.target.className !== 'card open' && clickedCard.target.className !== 'card match' && clickedCard.target.className !== 'deck') {
         incrementMoveCounter();
@@ -83,6 +72,17 @@ function handleClick(clickedCard) {
     }
 }
 
+function turnCard(thisCard) {
+    thisCard.target.classList.add('open');
+}
+
+function storeCard(thisCard) {
+    openedCards.push(thisCard.target);
+}
+
+/*
+ * Count moves and change star rate according to the number of moves
+ */
 function incrementMoveCounter() {
     moveCounter += 1;
     moves.innerHTML = moveCounter;
@@ -96,14 +96,9 @@ function starRating(moveCounter) {
     }
 }
 
-function storeCard(thisCard) {
-    openedCards.push(thisCard.target);
-}
-
-function turnCard(thisCard) {
-    thisCard.target.classList.add('open');
-}
-
+/*
+ * Compare the two opened cards to see if they match
+ */
 function compareCards(twoCards) {
     let [firstCard, secondCard] = twoCards;
     if (firstCard.innerHTML == secondCard.innerHTML) {
@@ -124,6 +119,9 @@ function compareCards(twoCards) {
     }
 }
 
+/*
+ * Open modal if user matched all the cards
+ */
 function checkVictory() {
     matchedCards += 2;
     if (matchedCards == 16) {
@@ -136,6 +134,9 @@ function checkVictory() {
     }
 }
 
+/*
+ * Start timer when the first card is clicked
+ */
 deck.addEventListener('click', setTimer);
 
 function setTimer(clickedCard) {
@@ -150,7 +151,11 @@ function clock() {
     seconds.innerHTML = timeCounter + ' seconds';
 }
 
+/*
+ * Set button to restart the game and all the scores
+ */
 restartButton.addEventListener('click', restartGame);
+
 
 function restartGame() {
     insertCards();
