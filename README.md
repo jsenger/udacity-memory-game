@@ -1,20 +1,26 @@
 # Memory Game Project
 
+This was a project made for Udacity's Front-End Web Developer Nanodegree.
+
 ## Table of Contents
 
+* [Installing](#installing)
 * [Instructions](#instructions)
+* [Dependencies](#dependencies)
 * [Contributing](#contributing)
+
+## Installing
+
+Just download the files from this repository and open 'index.html' in any browser.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The game has 8 pairs of cards with different images and you have to find the matching pairs. You can open two cards at a time and see if they both match, in case they don't the cards are turned back over. The less moves you make, the most stars you'll get at the end of the game.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Dependencies
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+- [Font Awesome](https://fontawesome.com/)
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Feel free to open issues and send pull requests.
