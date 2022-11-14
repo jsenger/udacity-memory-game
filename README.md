@@ -1,6 +1,6 @@
 # Memory Game Project
 
-This was a project made for Udacity's Front-End Web Developer Nanodegree.
+This was a project made for Udacity's Front-End Web Developer Nanodegree. [You can access it by clicking here.](https://udacity-memory-game.vercel.app/)
 
 ## Table of Contents
 
